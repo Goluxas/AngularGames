@@ -1,1 +1,40 @@
-<p>level2 works!</p>
+<table class="tictactoe-board">
+  <tbody>
+    <tr>
+      <td id="cell1" (click)="set(0, 0)" [class]="getStyle(0, 0)">
+        {{ getPlayerName(0, 0) }}
+      </td>
+      <td id="cell2" (click)="set(1, 0)" [class]="getStyle(1, 0)">
+        {{ getPlayerName(1, 0) }}
+      </td>
+      <td id="cell3" (click)="set(2, 0)" [class]="getStyle(2, 0)">
+        {{ getPlayerName(2, 0) }}
+      </td>
+    </tr>
+    <tr>
+      <td id="cell4" (click)="set(0, 1)" [class]="getStyle(0, 1)">
+        {{ getPlayerName(0, 1) }}
+      </td>
+      <td id="cell5" (click)="set(1, 1)" [class]="getStyle(1, 1)">
+        {{ getPlayerName(1, 1) }}
+      </td>
+      <td id="cell6" (click)="set(2, 1)" [class]="getStyle(2, 1)">
+        {{ getPlayerName(2, 1) }}
+      </td>
+    </tr>
+    <tr>
+      <td id="cell7" (click)="set(0, 2)" [class]="getStyle(0, 2)">
+        {{ getPlayerName(0, 2) }}
+      </td>
+      <td id="cell8" (click)="set(1, 2)" [class]="getStyle(1, 2)">
+        {{ getPlayerName(1, 2) }}
+      </td>
+      <td id="cell9" (click)="set(2, 2)" [class]="getStyle(2, 2)">
+        {{ getPlayerName(2, 2) }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>The winner is ...</h3>
+<button (click)="restart()">Restart</button>
