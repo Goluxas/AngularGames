@@ -36,7 +36,7 @@
   </tbody>
 </table>
 
-@if (currentWinner != 0) {
-<h3>The winner is {{ playerNames[currentWinner] }}</h3>
-}
+<h3 [hidden]="currentWinner === 0">
+  The winner is {{ playerNames[currentWinner] }}
+</h3>
 <button (click)="restart()">Restart</button>

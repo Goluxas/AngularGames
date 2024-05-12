@@ -58,6 +58,7 @@ export class Level2Component {
     let winner = true;
 
     // check verticals
+    // NOTE: this is overcomplicated. just use ifs
     for (let col = 0; col < 3; col++) {
       let top_player = this.boardContent[0][col];
       winner = true;
