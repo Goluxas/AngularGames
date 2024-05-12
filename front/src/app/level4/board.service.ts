@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class BoardService {
   public boardContent!: number[][];
-  public currentWinner: number = 0;
+  private currentWinner: number = 0;
   private currentPlayer: number = 1;
 
   constructor() {
@@ -20,6 +20,10 @@ export class BoardService {
     ];
     this.currentWinner = 0;
     this.currentPlayer = 1;
+  }
+
+  public get winnerIdx(): number {
+    return this.currentWinner;
   }
 
   public set(col: number, row: number): void {

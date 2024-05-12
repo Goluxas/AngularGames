@@ -49,10 +49,11 @@ export class Level4Component implements OnInit {
 
   restart(): void {
     this.board.restart();
+    this.boardContent = this.board.boardContent;
   }
 
   currentWinner(): number {
-    return this.board.currentWinner;
+    return this.board.winnerIdx;
   }
 
   set(col: number, row: number) {
