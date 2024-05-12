@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Level2Component } from '../level2/level2.component';
 
-interface Cell {
+export interface Cell {
   class: string;
   playerName: string;
 }
