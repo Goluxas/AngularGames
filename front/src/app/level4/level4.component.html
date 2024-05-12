@@ -1,0 +1,18 @@
+<table class="tictactoe-board">
+  <tbody>
+    @for(row of getCells(); let r = $index; track r) {
+    <tr>
+      @for(cell of row; let c = $index; track c) {
+      <td (click)="set(c, r)" [class]="cell.class">
+        {{ cell.playerName }}
+      </td>
+      }
+    </tr>
+    }
+  </tbody>
+</table>
+
+<h3 [hidden]="currentWinner() === 0">
+  The winner is {{ playerNames[currentWinner()] }}
+</h3>
+<button (click)="restart()">Restart</button>
