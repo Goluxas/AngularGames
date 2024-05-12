@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { Level2Component } from '../level2/level2.component';
 
+interface Cell {
+  class: string;
+  playerName: string;
+}
+
 @Component({
   selector: 'app-level3',
   standalone: true,
@@ -15,7 +20,21 @@ export class Level3Component extends Level2Component {
     super();
   }
 
-  public getCells(): number[] {
-    return [0, 1, 2];
+  public getCells(): Cell[][] {
+    let cells: Cell[][] = [];
+
+    for (let row = 0; row < 3; row++) {
+      cells.push([]);
+      for (let col = 0; col < 3; col++) {
+        let cell: Cell = {
+          class: this.getStyle(col, row),
+          playerName: this.getPlayerName(col, row),
+        };
+
+        cells[row][col] = cell;
+      }
+    }
+
+    return cells;
   }
 }

@@ -1,10 +1,10 @@
 <table class="tictactoe-board">
   <tbody>
-    @for(row of cellIndices; track $index) {
+    @for(row of getCells(); let r = $index; track r) {
     <tr>
-      @for(col of cellIndices; track $index) {
-      <td (click)="set(row, col)" [class]="getStyle(row, col)">
-        {{ getPlayerName(row, col) }}
+      @for(cell of row; let c = $index; track c) {
+      <td (click)="set(c, r)" [class]="cell.class">
+        {{ cell.playerName }}
       </td>
       }
     </tr>
