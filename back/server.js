@@ -7,12 +7,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+const tictactoe_routes = require("./routes/tictactoe");
+
 const TicTacToe = require("./models/tictactoe");
 
 require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT;
+
+app.use(express.json());
+
+app.use("/tictactoe", tictactoe_routes);
 
 app.get("/", (req, res) => {
   res.status(200).send("Back end works!");
