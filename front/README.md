@@ -1,6 +1,15 @@
 # Games
 
+A learning exercise in the MEAN stack, using simple games like tic-tac-toe as a starting point.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+
+## Roadmap
+
+- [ ] Implement an Express + Mongo backend to save game history (moves, final board state, winner)
+- [ ] Display total number of wins for both players in the front.
+- [ ] Display interactive heat map of plays.
+  - At each move, color the cells to match the frequency of the next move
 
 ## Development server
 
