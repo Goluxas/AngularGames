@@ -28,8 +28,6 @@ export class BoardService {
 
   constructor(private http: HttpClient) {}
 
-  public load() {}
-
   public get boardContent(): number[][] | undefined {
     if (!this.currentGame?.board) {
       return undefined;
@@ -53,9 +51,16 @@ export class BoardService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.log(error);
-
-    return throwError(() => new Error('Something'));
+    if (error.status === 400) {
+      return throwError(
+        () => new Error('Rules violation. Non-blocking error.')
+      );
+    } else {
+      return throwError(() => {
+        console.error(error);
+        return new Error('Server Error');
+      });
+    }
   }
 
   public set(col: number, row: number): void {

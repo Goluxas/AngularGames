@@ -68,10 +68,6 @@ function _getWinner(board) {
  * @param {*} res
  */
 async function placePiece(req, res) {
-  console.log(req.params.id);
-  console.log(req.body.row);
-  console.log(req.body.col);
-  console.log(req.body.player);
   try {
     const game_id = req.params.id;
     const game = await TicTacToe.findById(game_id);
