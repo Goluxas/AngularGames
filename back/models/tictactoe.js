@@ -18,6 +18,14 @@ const tictactoeSchema = new mongoose.Schema(
       },
     },
 
+    currentPlayer: {
+      type: Number,
+      required: true,
+      default: 1,
+      min: 1,
+      max: 2,
+    },
+
     /**
      * The winner of the game, if any
      *   0 for no winner, otherwise 1 or 2

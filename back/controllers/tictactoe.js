@@ -19,6 +19,29 @@ function _indexFromCoords(row, col) {
   return row * 3 + col;
 }
 
+function _coordsFromIndex(idx) {
+  const row = Math.floor(idx / 3);
+  const col = idx % 3;
+  return { row, col };
+}
+
+function _isLegalMove(game, move) {
+  if (game.winner !== 0) {
+    return [false, "Game already finished"];
+  }
+
+  if (game.currentPlayer !== move.player) {
+    return [false, `Not Player ${move.player}'s turn`];
+  }
+
+  if (game.board[move.position] !== 0) {
+    let { row, col } = _coordsFromIndex(move.position);
+    return [false, `Piece already played at Row: ${row}, Col: ${col}`];
+  }
+
+  return [true, ""];
+}
+
 function _getWinner(board) {
   for (let i = 0; i++; i < 2) {
     // Row checks
@@ -55,12 +78,18 @@ async function placePiece(req, res) {
 
     const pos = _indexFromCoords(req.body.row, req.body.col);
     const move = {
-      player: req.body.player,
+      player: Number(req.body.player),
       position: pos,
     };
 
+    const [legal, message] = _isLegalMove(game, move);
+    if (!legal) {
+      return res.status(400).json({ message });
+    }
+
     const board = game.board;
     board[pos] = req.body.player;
+    const currentPlayer = game.currentPlayer === 1 ? 2 : 1;
 
     const hist = game.moveHistory;
     hist.push(move);
@@ -69,7 +98,12 @@ async function placePiece(req, res) {
 
     const result = await TicTacToe.findOneAndUpdate(
       { _id: game_id },
-      { board: board, winner: winner, moveHistory: hist },
+      {
+        board: board,
+        winner: winner,
+        moveHistory: hist,
+        currentPlayer: currentPlayer,
+      },
       { new: true, runValidators: true }
     );
 
